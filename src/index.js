@@ -34,6 +34,14 @@ export default class App extends Component {
         this.swiper = swiper;
     };
 
+    handleSwipeAction = actionType => () => {
+        const stats = { ...this.state.stats };
+        stats[actionType]++;
+        this.setState(() => ({
+            stats
+        }));
+    };
+
     handleButtonClick = actionType => () => {
         const stats = { ...this.state.stats };
 
@@ -54,7 +62,7 @@ export default class App extends Component {
             }
 
             default: {
-                break;
+                return false;
             }
         }
 
@@ -72,6 +80,9 @@ export default class App extends Component {
                 <CardStack
                     style={styles.container}
                     ref={this.handleSwiperRef}
+                    onSwipedLeft={this.handleSwipeAction('no')}
+                    onSwipedRight={this.handleSwipeAction('yes')}
+                    onSwipedTop={this.handleSwipeAction('maybe')}
                     disableBottomSwipe
                     loop
                 >
