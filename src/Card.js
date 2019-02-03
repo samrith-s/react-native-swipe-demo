@@ -3,21 +3,7 @@ import { Text, View, ActivityIndicator } from 'react-native';
 import { Image } from 'react-native-elements';
 
 import styles from './styles';
-import img_apple from './images/apple.png';
-import img_blueberries from './images/blueberries.png';
-import img_coconut from './images/coconut.png';
-import img_grapes from './images/grapes.png';
-import img_lime from './images/lime.png';
-import img_orange from './images/orange.png';
-
-const images = {
-    apple: img_apple,
-    blueberries: img_blueberries,
-    coconut: img_coconut,
-    grapes: img_grapes,
-    lime: img_lime,
-    orange: img_orange
-};
+import images from './images';
 
 export default class Card extends Component {
     render() {
@@ -32,17 +18,39 @@ export default class Card extends Component {
                     }
                 ]}
             >
-                <Text style={{ color: '#fff', fontSize: 30 }}>{text}</Text>
-                <Image
-                    PlaceholderContent={<ActivityIndicator />}
+                <View
                     style={{
-                        width: 50,
-                        height: 50,
-                        marginTop: 10,
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        width: 75,
+                        height: 75,
+                        marginBottom: 20,
+                        padding: 10,
+                        backgroundColor: '#fff',
                         borderRadius: '50%'
                     }}
-                    source={images[text.toLowerCase()]}
-                />
+                >
+                    <Image
+                        PlaceholderContent={<ActivityIndicator />}
+                        placeholderStyle={{
+                            backgroundColor: 'transparent'
+                        }}
+                        style={{
+                            width: 50,
+                            height: 50,
+                            backgroundColor: 'transparent'
+                        }}
+                        source={images[text.toLowerCase()]}
+                    />
+                </View>
+                <Text
+                    style={{
+                        color: 'rgba(255,255,255,0.25)',
+                        fontSize: 30
+                    }}
+                >
+                    {text}
+                </Text>
             </View>
         );
     }
